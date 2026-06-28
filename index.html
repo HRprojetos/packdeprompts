@@ -267,6 +267,64 @@ body { background:var(--bg); color:var(--text); font-family:var(--font-b); min-h
 <body>
 
 <!-- WELCOME -->
+<!-- TERMO DE USO -->
+<div id="termo" style="position:fixed;inset:0;z-index:2000;background:rgba(4,6,12,0.97);display:flex;align-items:center;justify-content:center;padding:20px;font-family:'DM Sans',system-ui,sans-serif;">
+  <div style="background:#111520;border:1px solid #2A3D60;border-radius:18px;width:100%;max-width:560px;padding:36px 32px;box-shadow:0 24px 80px rgba(0,0,0,0.7);">
+    <div style="text-align:center;margin-bottom:24px;">
+      <div style="font-size:28px;margin-bottom:8px;">📋</div>
+      <div style="font-size:17px;font-weight:700;color:#E8EEFF;letter-spacing:-0.3px;">Termo de Ciência de Acesso</div>
+      <div style="font-size:13px;color:#7C82A8;margin-top:6px;">Leia com atenção antes de continuar</div>
+    </div>
+    <div style="background:#0D1526;border:1px solid #1E2D4A;border-radius:12px;padding:20px;font-size:13px;line-height:1.8;color:#8A9BC8;margin-bottom:24px;">
+      Ao clicar em <strong style="color:#E8EEFF;">"Concordar e Acessar"</strong>, você declara estar ciente de que:
+      <br><br>
+      <strong style="color:#4F7EFF;">1.</strong> O link de acesso ao <strong style="color:#E8EEFF;">Pack de Prompts para Engenheiros</strong> foi entregue por e-mail no momento da compra.<br><br>
+      <strong style="color:#4F7EFF;">2.</strong> O acesso concedido é <strong style="color:#E8EEFF;">vitalício</strong> — você poderá acessar este conteúdo a qualquer momento, sem limite de prazo ou número de acessos.<br><br>
+      <strong style="color:#4F7EFF;">3.</strong> Você tem plena ciência de que está recebendo e utilizando o produto adquirido.<br><br>
+      <strong style="color:#4F7EFF;">4.</strong> Este registro de aceite poderá ser utilizado como comprovação de acesso e uso do produto em caso de solicitação de reembolso.
+    </div>
+    <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:24px;">
+      <input type="checkbox" id="check-termo" style="width:18px;height:18px;margin-top:2px;flex-shrink:0;cursor:pointer;accent-color:#4F7EFF;">
+      <label for="check-termo" style="font-size:13px;color:#8A9BC8;cursor:pointer;line-height:1.6;">
+        Li e estou ciente das condições de acesso descritas acima.
+      </label>
+    </div>
+    <button id="btn-termo" onclick="aceitarTermo()" disabled style="width:100%;background:#1E2D4A;color:#4A5A80;border:none;border-radius:12px;padding:14px;font-family:'DM Sans',system-ui,sans-serif;font-size:15px;font-weight:600;cursor:not-allowed;transition:all 0.2s;">
+      Concordar e Acessar
+    </button>
+    <div style="text-align:center;margin-top:14px;font-size:11px;color:#2A3D60;">
+      HR Projetos, Construções e Serviços · CNPJ 49.736.871/0001-67
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  if(localStorage.getItem('termo_aceito_pack')){
+    document.getElementById('termo').style.display='none';
+  }
+  document.getElementById('check-termo').addEventListener('change', function(){
+    const btn = document.getElementById('btn-termo');
+    if(this.checked){
+      btn.disabled=false;
+      btn.style.background='#4F7EFF';
+      btn.style.color='#fff';
+      btn.style.cursor='pointer';
+    } else {
+      btn.disabled=true;
+      btn.style.background='#1E2D4A';
+      btn.style.color='#4A5A80';
+      btn.style.cursor='not-allowed';
+    }
+  });
+})();
+
+function aceitarTermo(){
+  localStorage.setItem('termo_aceito_pack', new Date().toISOString());
+  document.getElementById('termo').style.display='none';
+}
+</script>
+
 <div id="welcome">
   <div class="glow-bg"></div>
   <div class="welcome-content">
@@ -282,7 +340,7 @@ body { background:var(--bg); color:var(--text); font-family:var(--font-b); min-h
     <div class="badge-dot"></div>
     150 prompts · 8 categorias · acesso vitalício
   </div>
-  <div class="welcome-credit">Desenvolvido pela <span>Eng. Hélvio Rickhardson</span></div>
+  <div class="welcome-credit">Desenvolvido pela <span>Mindaic</span></div>
 </div>
 
 <!-- APP -->
@@ -322,7 +380,7 @@ body { background:var(--bg); color:var(--text); font-family:var(--font-b); min-h
         <p>Tente outra palavra-chave</p>
       </div>
       <div class="app-footer">
-        Desenvolvido pela <span>Eng. Hélvio Rickhardson</span>
+        Desenvolvido pela <span>Mindaic</span>
       </div>
     </main>
   </div>
